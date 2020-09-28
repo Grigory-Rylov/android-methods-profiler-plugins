@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.github.grishberg.android.profiler'
-version '1.0.0'
+version '1.1.0'
 
 repositories {
     mavenCentral()
@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
     api 'com.github.Grigory-Rylov:android-methods-profiler-core:1.0.3'
-    implementation 'org.pf4j:pf4j:3.4.1'
+    api 'org.pf4j:pf4j:3.4.1'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     testCompile group: 'junit', name: 'junit', version: '4.12'

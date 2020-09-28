@@ -9,6 +9,14 @@ import org.pf4j.ExtensionPoint
  * Plugin analyzer must be implemented this interface.
  */
 interface CallTraceAnalyzer : ExtensionPoint {
+    interface Callback {
+        /**
+         * Must be called when analyze is ended.
+         * @param result - contains analyze result or [EmptyCallTraceAnalyzerResult]
+         */
+        fun onResultReady(result: CallTraceAnalyzerResult)
+    }
+
     /**
      * Analyzer name to be shown in menu.
      */
@@ -16,7 +24,9 @@ interface CallTraceAnalyzer : ExtensionPoint {
 
     /**
      * Main analyzer method.
-     * [thread] - current thread, or null if should analyze all threads.
+     * @param input - input data [AnalyzerResult]
+     * @param thread - current thread [ThreadItem] or null if should analyze all threads.
+     * @param callback - callback for returning result.
      */
-    fun analyzeCallTrace(input: AnalyzerResult, thread: ThreadItem?): CallTraceAnalyzerResult
+    fun analyzeCallTrace(input: AnalyzerResult, thread: ThreadItem?, callback: Callback)
 }
